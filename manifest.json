@@ -1,0 +1,22 @@
+{
+  "name": "EnglishBoost",
+  "short_name": "EnglishBoost",
+  "description": "Aprenda inglês com teste de nivelamento e simulado CELPIP",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#58CC02",
+  "theme_color": "#58CC02",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

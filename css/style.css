@@ -1,0 +1,487 @@
+/* EnglishBoost - Estilo Duolingo */
+
+:root {
+    --primary: #58CC02;
+    --secondary: #1CBound;
+    --accent: #FF9600;
+    --red: #FF4B4B;
+    --bg: #FFFFFF;
+    --dark: #1A1A1A;
+    --gray: #E5E5E5;
+    --text: #3C3C3C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background: var(--primary);
+    padding: 16px;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 16px;
+}
+
+/* Lesson Card */
+.lesson-card {
+    background: var(--gray);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lesson-card h2 {
+    margin-bottom: 12px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.option {
+    background: white;
+    border: 2px solid var(--gray);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option:hover {
+    border-color: var(--primary);
+}
+
+.option.correct {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.option.wrong {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+}
+
+/* Practice Hub */
+.practice-hub {
+    margin-bottom: 20px;
+}
+
+.practice-hub h2 {
+    margin-bottom: 12px;
+}
+
+.practice-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.practice-btn {
+    background: white;
+    border: 2px solid var(--gray);
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.practice-btn:hover {
+    border-color: var(--primary);
+    background: var(--gray);
+}
+
+/* Progress */
+.progress-section {
+    text-align: center;
+}
+
+.progress-bar {
+    background: var(--gray);
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.progress-fill {
+    background: var(--primary);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 12px;
+    border-top: 1px solid var(--gray);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+    opacity: 1;
+}
+
+.nav-btn.active {
+    border-bottom: 3px solid var(--primary);
+}
+
+/* Simulado CELPIP */
+.simulado-section {
+    padding: 20px;
+}
+
+.simulado-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.simulado-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.simulado-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.simulado-tab {
+    flex: 1;
+    padding: 12px 8px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.simulado-tab.active {
+    background: #58CC02;
+    color: white;
+}
+
+.simulado-panel {
+    display: none;
+}
+
+.simulado-panel.active {
+    display: block;
+}
+
+.reading-passage, .writing-task, .listening-note, .speaking-task {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.passage-box, .task-box, .transcript-box {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 3px solid #58CC02;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.reading-question, .listening-question {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+#writing-input, #speaking-input {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+    margin: 15px 0;
+}
+
+#writing-input:focus, #speaking-input:focus {
+    border-color: #58CC02;
+    outline: none;
+}
+
+/* Profile Section */
+.profile-section {
+    padding: 20px;
+}
+
+.profile-info {
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row .label {
+    font-weight: 600;
+    color: #666;
+}
+
+.info-row .value {
+    font-weight: bold;
+}
+
+.profile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background: #58CC02;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #FF4B4B;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Placement Section */
+.placement-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.placement-info {
+    color: #666;
+    margin: 15px 0;
+}
+
+#placement-content {
+    margin: 20px 0;
+}
+
+#placement-question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 20px 0;
+    min-height: 60px;
+}
+
+#placement-progress {
+    font-weight: bold;
+    color: #58CC02;
+}
+
+#placement-result {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#placement-result h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+#placement-result .btn-primary {
+    display: block;
+    width: 100%;
+}
+
+/* Especialista Chat */
+.especialista-section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+}
+
+.especialista-header {
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.especialista-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.especialista-chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.msg {
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 85%;
+    line-height: 1.4;
+}
+
+.msg.bot {
+    background: #f5f5f5;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.msg.user {
+    background: #58CC02;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.especialista-input {
+    display: flex;
+    gap: 10px;
+    padding: 15px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.especialista-input input {
+    flex: 1;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.especialista-input input:focus {
+    border-color: #58CC02;
+}
+
+.especialista-input button {
+    padding: 14px 20px;
+    background: #58CC02;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    color: #666;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-danger {
+    background: #FF4B4B;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-help {
+    background: #FF9600;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Loading state */
+.btn-help:hover { opacity: 0.9; }
+
+.btn-help {
+    background: #FF9600;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 10px;
+}

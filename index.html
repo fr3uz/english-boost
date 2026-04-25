@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#58CC02">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="EnglishBoost">
+    <title>EnglishBoost</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="stats">
+                <span class="xp">XP: <span id="xp-count">0</span></span>
+                <span class="streak">🔥 <span id="streak-count">0</span></span>
+                <span class="hearts">❤️ <span id="hearts-count">5</span></span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Daily Lesson -->
+            <section class="lesson-card" id="daily-lesson">
+                <h2>📅 Lição do Dia</h2>
+                <p id="lesson-prompt">Carregando...</p>
+                <div class="options" id="lesson-options">
+                    <button class="option" onclick="checkAnswer(this)">Option 1</button>
+                    <button class="option" onclick="checkAnswer(this)">Option 2</button>
+                    <button class="option" onclick="checkAnswer(this)">Option 3</button>
+                    <button class="option" onclick="checkAnswer(this)">Option 4</button>
+                </div>
+                <p id="lesson-result"></p>
+            </section>
+
+            <!-- Practice Hub -->
+            <section class="practice-hub" id="practice-hub" style="display:none">
+                <h2>🎯 Prática</h2>
+                <div class="practice-buttons">
+                    <button class="practice-btn" onclick="startSimulado()">📋 Simulado CELPIP</button>
+                    <button class="practice-btn" onclick="startPractice('vocab')">📚 Vocabulário</button>
+                    <button class="practice-btn" onclick="startPractice('grammar')">📝 Gramática</button>
+                    <button class="practice-btn" onclick="startPractice('conversation')">💬 Conversação</button>
+                    <button class="practice-btn" onclick="startPractice('mistakes')">⚠️ Meus Erros</button>
+                </div>
+            </section>
+
+            <!-- Simulado CELPIP -->
+            <section class="simulado-section" id="simulado-section" style="display:none">
+                <div class="simulado-header">
+                    <h2>📋 Simulado CELPIP-General</h2>
+                    <p class="simulado-subtitle">Teste seus conhecimentos para imigração Canadá</p>
+                </div>
+                
+                <div class="simulado-tabs">
+                    <button class="simulado-tab active" onclick="showSimuladoTab('reading')">📖 Reading</button>
+                    <button class="simulado-tab" onclick="showSimuladoTab('writing')">✍️ Writing</button>
+                    <button class="simulado-tab" onclick="showSimuladoTab('listening')">👂 Listening</button>
+                    <button class="simulado-tab" onclick="showSimuladoTab('speaking')">🗣️ Speaking</button>
+                </div>
+                
+                <div id="simulado-content">
+                    <!-- Reading content -->
+                    <div id="simulado-reading" class="simulado-panel">
+                        <div class="reading-passage">
+                            <h3>Reading Task</h3>
+                            <p>Read the following email and answer the questions below.</p>
+                            <div class="passage-box">
+                                <p><strong>Subject:</strong> Meeting Request</p>
+                                <p>Hi Sarah,</p>
+                                <p>I hope this email finds you well. I wanted to follow up on our meeting scheduled for next Tuesday at 2 PM. Unfortunately, I have a conflicting appointment that I cannot reschedule. Would it be possible to move our meeting to Wednesday at 10 AM or Thursday at 3 PM?</p>
+                                <p>Please let me know which time works best for you. If neither works, I can join via video call during the original time slot.</p>
+                                <p>Thank you for your understanding.</p>
+                                <p>Best regards,</p>
+                                <p>Michael</p>
+                            </div>
+                        </div>
+                        <div class="reading-question">
+                            <p><strong>Question 1:</strong> Why is Michael rescheduling the meeting?</p>
+                            <div class="options">
+                                <button class="option" onclick="checkSimulado(this, false)">A) He is sick</button>
+                                <button class="option" onclick="checkSimulado(this, true)">B) He has another appointment</button>
+                                <button class="option" onclick="checkSimulado(this, false)">C) The client cancelled</button>
+                                <button class="option" onclick="checkSimulado(this, false)">D) He has a family emergency</button>
+                            </div>
+                        </div>
+                        <div class="reading-question">
+                            <p><strong>Question 2:</strong> What times did Michael suggest?</p>
+                            <div class="options">
+                                <button class="option" onclick="checkSimulado(this, false)">A) Tuesday 3 PM or Wednesday 10 AM</button>
+                                <button class="option" onclick="checkSimulado(this, true)">B) Wednesday 10 AM or Thursday 3 PM</button>
+                                <button class="option" onclick="checkSimulado(this, false)">C) Monday 2 PM or Friday 10 AM</button>
+                                <button class="option" onclick="checkSimulado(this, false)">D) Wednesday 2 PM or Thursday 10 AM</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Writing content -->
+                    <div id="simulado-writing" class="simulado-panel" style="display:none">
+                        <div class="writing-task">
+                            <h3>Writing Task 1: Email Writing</h3>
+                            <p>You have 25 minutes to write this task. Write 150-200 words.</p>
+                            
+                            <div class="task-box">
+                                <p><strong>Task:</strong> You arrived at the airport and realized you left your important documents at home. Write an email to your supervisor explaining the situation and asking for advice on what to do.</p>
+                            </div>
+                            
+                            <textarea id="writing-input" placeholder="Start writing your email here..."></textarea>
+                            <button class="btn-primary" onclick="submitWriting()">📤 Submit</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Listening content -->
+                    <div id="simulado-listening" class="simulado-panel" style="display:none">
+                        <div class="listening-note">
+                            <h3>👂 Listening Section</h3>
+                            <p>Para fazer o listening de verdade, você precisaria de áudio. Esta versão mostra o transcript.</p>
+                            <div class="transcript-box">
+                                <p><strong> Listen to the following announcement:</strong></p>
+                                <p>"Attention passengers. Flight 456 to Vancouver is now boarding at Gate 12. Please have your boarding pass ready. Due to weather conditions, there may be a delay of approximately 30 minutes on the tarmac before departure. We apologize for any inconvenience. Once weather improves, we will begin boarding. Thank you for your patience."</p>
+                            </div>
+                        </div>
+                        <div class="listening-question">
+                            <p><strong>Question 1:</strong> What is happening with Flight 456?</p>
+                            <div class="options">
+                                <button class="option" onclick="checkSimulado(this, false)">A) It has already departed</button>
+                                <button class="option" onclick="checkSimulado(this, false)">B) It is cancelled</button>
+                                <button class="option" onclick="checkSimulado(this, true)">C) There may be a delay</button>
+                                <button class="option" onclick="checkSimulado(this, false)">D) It is changing gates</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Speaking content -->
+                    <div id="simulado-speaking" class="simulado-panel" style="display:none">
+                        <div class="speaking-task">
+                            <h3>🗣️ Speaking Task</h3>
+                            <p>You have 30 seconds to prepare and 60 seconds to record your response.</p>
+                            
+                            <div class="task-box">
+                                <p><strong>Task:</strong> Describe a memorable trip you took. Where did you go? Who did you go with? What did you do there?</p>
+                            </div>
+                            
+                            <textarea id="speaking-input" placeholder="Write your response (this simulates speaking)..."></textarea>
+                            <button class="btn-primary" onclick="submitSpeaking()">📤 Submit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <p id="simulado-result"></p>
+                <button class="btn-back" onclick="showTab('practice')">← Voltar</button>
+            </section>
+
+            <!-- Profile -->
+            <section class="profile-section" id="profile-section" style="display:none">
+                <h2>👤 Meu Perfil</h2>
+                
+                <div class="profile-info">
+                    <div class="info-row">
+                        <span class="label">Nível:</span>
+                        <span class="value" id="profile-level">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">XP Total:</span>
+                        <span class="value" id="profile-xp">0</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Streak:</span>
+                        <span class="value" id="profile-streak">0 dias</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Teste de Nivelamento:</span>
+                        <span class="value" id="profile-placement">Não realizado</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Erros gravados:</span>
+                        <span class="value" id="profile-mistakes">0</span>
+                    </div>
+                </div>
+
+                <div class="profile-buttons">
+                    <button class="btn-primary" onclick="startPlacement()">📋 Fazer Teste de Nivelamento</button>
+                    <button class="btn-danger" onclick="resetAll()">🔄 Resetar Tudo</button>
+                </div>
+            </section>
+
+            <!-- Especialista Chat -->
+            <section class="especialista-section" id="especialista-section" style="display:none">
+                <div class="especialista-header">
+                    <h2>💬 Professor James</h2>
+                    <p class="especialista-subtitle">Seu tutor de inglês</p>
+                </div>
+                <div class="especialista-chat" id="especialista-chat">
+                    <div class="msg bot">
+                        <p>Olá! Sou o Professor James, seu tutor de inglês. 😊</p>
+                        <p>Pode me perguntar qualquer coisa sobre inglês, gramática, vocabulário... estou aqui para ajudar!</p>
+                    </div>
+                </div>
+                <div class="especialista-input">
+                    <input type="text" id="especialista-input" placeholder="Digite sua pergunta em português..." onkeypress="if(event.key==='Enter')sendToEspecialista()">
+                    <button onclick="sendToEspecialista()">➤</button>
+                </div>
+                <button class="btn-back" onclick="showTab('profile')">← Voltar ao Perfil</button>
+            </section>
+
+            <!-- Placement Test -->
+            <section class="placement-section" id="placement-section" style="display:none">
+                <h2>📋 Teste de Nivelamento</h2>
+                <p class="placement-info">Teste seu nível de inglês (A1-C2).<br> São 40 questões - dificuldade crescente.</p>
+                
+                <div id="placement-content">
+                    <p id="placement-question">Clique em "Iniciar" para começar.</p>
+                    <div class="options" id="placement-options">
+                        <button class="option" onclick="checkPlacement(this)">Option 1</button>
+                        <button class="option" onclick="checkPlacement(this)">Option 2</button>
+                        <button class="option" onclick="checkPlacement(this)">Option 3</button>
+                        <button class="option" onclick="checkPlacement(this)">Option 4</button>
+                    </div>
+                </div>
+                
+                <p id="placement-progress">Questão: 0/40</p>
+                <p id="placement-result"></p>
+                
+                <button class="btn-primary" id="placement-start-btn" onclick="startPlacement()">▶ Iniciar Teste</button>
+            </section>
+
+            <!-- Progress -->
+            <section class="progress-section">
+                <h2>📊 Seu Progresso</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p>Level: <span id="level">1</span></p>
+            </section>
+        </main>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" onclick="showTab('home')">🏠</button>
+            <button class="nav-btn" onclick="showTab('practice')">⚡</button>
+            <button class="nav-btn" onclick="showTab('profile')">👤</button>
+        </nav>
+    </div>
+
+    <script src="js/app.js"></script>
+    <!-- PWA Install Banner -->
+    <div id="pwa-banner" style="display:none; position: fixed; bottom: 70px; left: 10px; right: 10px; background: #58CC02; color: white; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 100;">
+        <p style="margin: 0 0 10px 0;">📱 Instale como app!</p>
+        <button onclick="installPWA()" style="background: white; color: #58CC02; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold;">Instalar</button>
+    </div>
+
+    <script>
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('pwa-banner').style.display = 'block';
+        });
+        
+        function installPWA() {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((result) => {
+                if (result.outcome === 'accepted') {
+                    document.getElementById('pwa-banner').style.display = 'none';
+                }
+            });
+        }
+        
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
