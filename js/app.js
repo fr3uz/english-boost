@@ -597,3 +597,340 @@ function submitSpeaking() {
 function startPractice(type) {
     alert("Em breve: prática " + type);
 }
+
+// ===== LANGUAGE SYSTEM =====
+let currentLang = 'en';
+
+const translations = {
+    en: {
+        title: "Lição do Dia",
+        lesson: "Nível",
+        correct: "✅ Correto!",
+        wrong: "❌ Errado!",
+        practice: "Prática",
+        profile: "Meu Perfil",
+        level: "Nível",
+        xp: "XP",
+        streak: "Streak",
+        hearts: "❤️",
+        placementTest: "Teste de Nivelamento",
+        notDone: "Não realizado",
+        simulado: "Simulado",
+        mistake: "Meus Erros"
+    },
+    fr: {
+        title: "Leçon du Jour",
+        lesson: "Niveau",
+        correct: "✅ Correct!",
+        wrong: "❌ Faux!",
+        practice: "Pratique",
+        profile: "Mon Profil",
+        level: "Niveau",
+        xp: "XP",
+        streak: "Série",
+        hearts: "❤️",
+        placementTest: "Test de Niveau",
+        notDone: "Non effectué",
+        simulado: "Simulé",
+        mistake: "Mes Erreurs"
+    }
+};
+
+function changeLanguage(lang) {
+    currentLang = lang;
+    saveUser();
+    alert("Idioma mudado para " + (lang === 'en' ? 'English' : 'Français') + "! Faz o teste de nivelamento.");
+    location.reload();
+}
+
+// ===== FRENCH DATA =====
+const placementTestFR = [
+    // A1
+    { q: "___ s'appelle Marie.", o: ["Elle", "Il", "Nous", "Je"], a: 0 },
+    { q: "Tu ___ d'où?", o: ["es", "être", "as", "ai"], a: 0 },
+    { q: "Je ___ étudiant.", o: ["suis", "es", "est", "êtes"], a: 0 },
+    { q: "Il ___ du Brésil.", o: ["vient", "venir", "venus", "venez"], a: 0 },
+    { q: "Ils ___ étudiants.", o: ["sont", "es", "est", "êtes"], a: 0 },
+    { q: "Comment ___ tu?", o: ["vas", "es", "est", "allez"], a: 0 },
+    { q: "___ heures est-il?", o: ["Quelle", "Qu'est-ce", "Quand", "Comment"], a: 0 },
+    { q: "J'habite ___ France.", o: ["en", "à", "dans", "sur"], a: 0 },
+    { q: "Il travaille ___ banque.", o: ["à la", "en", "dans", "sur"], a: 0 },
+    { q: "J'ai ___ chat.", o: ["un", "une", "des", "le"], a: 0 },
+    // A2
+    { q: "Elle ___ au magasin chaque jour.", o: ["va", "vas", "allait", "aller"], a: 0 },
+    { q: "Il ___ très bien l'anglais.", o: ["parle", "parles", "parlé", "parler"], a: 0 },
+    { q: "___ tu parles anglais?", o: ["Parles", "Parle", "Parle", "Parlent"], a: 0 },
+    { q: "Je ___ habituellement du café.", o: ["bois", "boit", "bu", "boire"], a: 0 },
+    { q: "Le livre ___ sur la table.", o: ["est", "suis", "êtes", "sont"], a: 0 },
+    { q: "J'ai ___ voiture.", o: ["une", "un", "des", "les"], a: 0 },
+    { q: "Elle ___ deux frères.", o: ["a", "as", "ai", "avons"], a: 0 },
+    { q: "___ un chat dans le jardin.", o: ["Il y a", "Est", "C'est", "Il"], a: 0 },
+    { q: "Je ___ au parc hier.", o: ["suis allé", "ai allé", "suis allée", "étais allé"], a: 0 },
+    { q: "Elle ___ le film la semaine dernière.", o: ["a regardé", "regarde", "regardait", "regarder"], a: 0 },
+    // B1
+    { q: "Ils ___ l'anglais aux États-Unis.", o: ["ont étudié", "étudient", "étudiaient", "étudiera"], a: 0 },
+    { q: "Il ___ à la maison à 18h.", o: ["est rentré", "rentrait", "rentrer", "rentré"], a: 0 },
+    { q: "Il ___ très froid anoche.", o: ["a fait", "fait", "faire", "fera"], a: 0 },
+    { q: "Je pense qu'elle ___ demain.", o: ["viendra", "venir", "venait", "venait"], a: 0 },
+    { q: "Tu ___ parler anglais.", o: ["peux", "pouvait", "pourras", "pourrait"], a: 0 },
+    { q: "Si j'___ riche, j'achèterais une maison.", o: ["étais", "était", "es", "suis"], a: 0 },
+    { q: "Je wish je ___ espagnol.", o: ["pouvais", "peux", "pourrais", "pourra"], a: 0 },
+    { q: "D'ici un an, j'___ anglais depuis 3 ans.", o: ["aurai étudié", "étudierai", "étudie", "étudiais"], a: 0 },
+    { q: "Le livre ___ j'ai acheté est intéressant.", o: ["que", "qui", "lequel", "quoi"], a: 0 },
+    { q: "Je recommande ___ le livre.", o: ["de lire", "lire", "lisant", "lu"], a: 0 },
+    // B2
+    { q: "Si elle ___ ici, elle nous aiderait.", o: ["était", "soit", "est", "serait"], a: 0 },
+    { q: "Il est temps qu'on ___ une décision.", o: ["prenne", "prends", "prenant", "pris"], a: 0 },
+    { q: "J'attends ___ de vous.", o: ["de recevoir", "recevoir", "recevant", "reçu"], a: 0 },
+    { q: "Elle a dit qu'elle ___ fatiguée.", o: ["était", "est", "été", "étant"], a: 0 },
+    { q: "La maison ___ l'année dernière.", o: ["a été construite", "été construite", "est construite", "construite"], a: 0 },
+    { q: "Si j'___ plus, j'aurais réussi.", o: ["avais étudié", "étudiais", "étudie", "étudiera"], a: 0 },
+    { q: "À cette heure demain, je ___ à Londres.", o: ["serai en train de voler", "volerai", "serai volé", "vole"], a: 0 },
+    { q: "D'ici un mois, j'___ ici depuis un an.", o: ["aurai été", "serai", "étais", "fus"], a: 0 },
+    { q: "Le travail ___ demain.", o: ["doit être fait", "doit faire", "doit être fait", "doit faire"], a: 0 },
+    { q: "Tu ___ dû étudier plus.", o: ["aurais dû", "devrais", "dois", "devras"], a: 0 },
+    // C1
+    { q: "Il est essentiel qu'elle ___ à l'heure.", o: ["arrive", "arrived", "arriver", "arrivant"], a: 0 },
+    { q: "Je demande qu'il ___ la vérité.", o: ["dise", "dit", "dire", "disant"], a: 0 },
+    { q: "Tu ___ mieux partir maintenant.", o: ["ferais mieux de", "mieux de partir", "mieux partir", "mieux parti"], a: 0 },
+    { q: "Elle ___ être la directrice.", o: ["pourrait", "peut", "doit", "devrait"], a: 0 },
+    { q: "Je wish je ___ pas dit ça.", o: ["n'avais pas dit", "n'ai pas dit", "ne dis pas", "ne dirai pas"], a: 0 },
+    { q: "Si seulement elle ___ avant.", o: ["avait su", "su", "savait", "saura"], a: 0 },
+    { q: "Elle agit comme si elle ___ la propriétaire.", o: ["était", "est", "était été", "soit"], a: 0 },
+    { q: "J'apprécie ___ cette opportunité.", o: ["que vous donniez", "vous donner", "donnant", "donné"], a: 0 },
+    { q: "Il regrette ___ ça.", o: ["de dire", "dire", "dit", "disant"], a: 0 },
+    { q: "___ elle est talentueuse, elle manque d'expérience.", o: ["Bien que", "Parce que", "Si", "Quand"], a: 0 }
+];
+
+// French lessons by level (same structure as English)
+const nivel1FR = [
+    { q: "Bonjour, je m'appelle ___.", o: ["Jean", "Jea", "Jon", "Jan"], a: 0 },
+    { q: "Comment ___ tu?", o: ["vas", "es", "est", "allez"], a: 0 },
+    { q: "Je ___ étudiant.", o: ["suis", "es", "est", "êtes"], a: 0 },
+    { q: "Elle ___ du Brésil.", o: ["vient", "venons", "venez", "venez"], a: 0 },
+    { q: "Ils ___ étudiants.", o: ["sont", "es", "est", "êtes"], a: 0 },
+    { q: "Nous ___ amis.", o: ["sommes", "sommes", "suis", "êtes"], a: 0 },
+    { q: "C'est ___ livre.", o: ["un", "une", "des", "les"], a: 0 },
+    { q: "Vous ___ mon ami.", o: ["êtes", "es", "est", "som nos"], a: 0 },
+    { q: "Il ___ professeur.", o: ["est", "es", "sommes", "êtes"], a: 0 },
+    { q: "J'ai ___ ans.", o: ["vingt-cinq", "vint-cinq", "vinte-cinq", "vignt-cinq"], a: 0 },
+    { q: "___ est ton nom?", o: ["Quel", "Qui", "Où", "Comment"], a: 0 },
+    { q: "___ es-tu?", o: ["D'où", "Quel", "Qui", "Comment"], a: 0 },
+    { q: "___ heures est-il?", o: ["Quelle", "Quand", "Où", "Comment"], a: 0 },
+    { q: "___ c'est?", o: ["Qu'est-ce", "Quel", "Qui", "Où"], a: 0 },
+    { q: "J'habite ___ France.", o: ["en", "à", "dans", "sur"], a: 0 }
+];
+
+const nivel2FR = [
+    { q: "Elle ___ au magasin chaque jour.", o: ["va", "vas", "allait", "aller"], a: 0 },
+    { q: "Il ___ très bien l'anglais.", o: ["parle", "parles", "parlé", "parler"], a: 0 },
+    { q: "Elle ___ le café.", o: ["aime", "aimes", "aimé", "aimons"], a: 0 },
+    { q: "L'enfant ___ vite.", o: ["court", "coures", "couru", "coures"], a: 0 },
+    { q: "Il ___ beaucoup ici.", o: ["pleut", "pleut", "pluie", "plu"], a: 0 },
+    { q: "___ tu parles français?", o: ["Parles", "Parle", "Parlons", "Parlent"], a: 0 },
+    { q: "___ elle aime le café?", o: ["Aime-t-elle", "Aime elle", "Elle aime", "Aimes"], a: 0 },
+    { q: "J'ai ___ idée.", o: ["une", "un", "des", "le"], a: 0 },
+    { q: "C'est ___ ingénieur.", o: ["un", "une", "des", "le"], a: 0 },
+    { q: "J'ai ___ idée.", o: ["une", "un", "des", "la"], a: 0 },
+    { q: "Le livre est ___ la table.", o: ["sur", "dans", "à", "en"], a: 0 },
+    { q: "J'ai ___ voiture.", o: ["une", "un", "des", "la"], a: 0 },
+    { q: "Elle ___ deux frères.", o: ["a", "as", "ai", "avons"], a: 0 },
+    { q: "Ils ___ maison.", o: ["ont", "as", "ai", "avons"], a: 0 },
+    { q: "___ un chat dans le jardin.", o: ["Il y a", "Est", "C'est", "Il"], a: 0 }
+];
+
+const nivel3FR = [
+    { q: "Je ___ à la plage hier.", o: ["suis allé", "ai allé", "allé", "étais allé"], a: 0 },
+    { q: "Elle ___ le livre hier.", o: ["a terminé", "termine", "terminé", "terminait"], a: 0 },
+    { q: "Ils ___ le film.", o: ["ont regardé", "regarde", "regardait", "regarder"], a: 0 },
+    { q: "Il ___ l'anglais l'année dernière.", o: ["a étudié", "étudie", "étudiait", "étudiera"], a: 0 },
+    { q: "Nous ___ à la maison.", o: ["avons mangé", "mange", "mangian", "mangeons"], a: 0 },
+    { q: "___ tu vu le film?", o: ["As-tu", "Tu as", "As tu", "As-tu"], a: 0 },
+    { q: "Où ___ elle allé?", o: ["est-elle allée", "elle est allée", "alla", "allait"], a: 0 },
+    { q: "Je ___ maintenant.", o: ["mange", "manges", "mangent", "mangeons"], a: 0 },
+    { q: "Elle ___ maintenant.", o: ["apprend", "apprends", "apprennent", "apprenons"], a: 0 },
+    { q: "J'___ l'anglais depuis 5 ans.", o: ["ai étudié", "étudie", "étudiais", "étudiera"], a: 0 },
+    { q: "Elle ___ ici avant.", o: ["a été", "est", "était", "sera"], a: 0 },
+    { q: "Tu as fini ___?", o: ["encore", "déjà", "jamais", "aussi"], a: 0 },
+    { q: "Je ___ au Brésil l'année dernière.", o: ["suis allé", "ai allé", "allé", "étais allé"], a: 0 },
+    { q: "___ puis-je vous aider?", o: ["Puis", "Peux", "Pourrais", "Pourrai"], a: 0 },
+    { q: "Je ___ comprendre.", o: ["ne comprends pas", "comprend pas", "comprendsNon", "pas comprends"], a: 0 }
+];
+
+const nivel4FR = [
+    { q: "Si j'___ riche, j'achèterais une maison.", o: ["étais", "était", "es", "suis"], a: 0 },
+    { q: "Si elle ___ ici, elle nous aiderait.", o: ["était", "soit", "est", "serait"], a: 0 },
+    { q: "Je wish je ___ espagnol.", o: ["pouvais", "peux", "pourrais", "pourra"], a: 0 },
+    { q: "Je wish j'___ plus d'argent.", o: ["avais", "ai", "aurais", "aurai"], a: 0 },
+    { q: "Elle wish elle ___ plus jeune.", o: ["était", "soit", "est", "serait"], a: 1 },
+    { q: "Au moment où je ___ à la maison, elle était partie.", o: ["suis rentré", "rentrais", "rentre", "rentré"], a: 0 },
+    { q: "Elle a dit qu'elle ___ fatiguée.", o: ["était", "était", "était", "est"], a: 0 },
+    { q: "Il m'a dit qu'il ___ venir.", o: ["venait", "vient", "viendra", "venir"], a: 0 },
+    { q: "La maison ___ l'année dernière.", o: ["a été construite", "a été construit", "été construite", "été construit"], a: 0 },
+    { q: "La personne qui ___ s'appelle Marie.", o: ["m'a appelé", "m'appelait", "appelé", "appelle"], a: 0 },
+    { q: "Le livre ___ j'ai acheté est intéressant.", o: ["que", "qui", "lequel", "quoi"], a: 0 },
+    { q: "Tu ___ dû étudier plus.", o: ["aurais dû", "devrais", "devras", "dois"], a: 0 },
+    { q: "Je t'appellerai ___ j'arrive.", o: ["quand", "pendant", "avant", "après"], a: 0 },
+    { q: "Appelle-moi ___ tu as besoin.", o: ["si", "quand", "pendant", "avant"], a: 0 },
+    { q: "J'aime ___ l'anglais.", o: ["apprendre", "apprends", "appris", "apprenant"], a: 0 }
+];
+
+const nivel5FR = [
+    { q: "Si j'___ plus, j'aurais réussi.", o: ["avais ��tudié", "étudiais", "étudie", "étudiera"], a: 0 },
+    { q: "Si elle ___ , elle serait venue.", o: ["avait su", "savait", "su", "saurait"], a: 0 },
+    { q: "À cette heure demain, je ___ à Londres.", o: ["serai en train de voler", "volerai", "serai volé", "vole"], a: 0 },
+    { q: "D'ici un mois, j'___ ici depuis un an.", o: ["aurai été", "serai", "étais", "fus"], a: 0 },
+    { q: "Le travail ___ demain.", o: ["doit être fait", "doit faire", "doit être fait", "doit faire"], a: 0 },
+    { q: "Les règles ___ par tout le monde.", o: ["doivent être suivies", "doivent suivre", "doivent être suivi", "doivent suivi"], a: 0 },
+    { q: "___ j'arrivais, le téléphone a sonné.", o: ["À peine", "Quand", "Alors", "Donc"], a: 0 },
+    { q: "La personne ___ t'a appelé est ici.", o: ["qui", "que", "laquelle", "quoi"], a: 0 },
+    { q: "Je me demande ___ elle est.", o: ["qui", "que", "laquelle", "quoi"], a: 0 },
+    { q: "Tu peux me dire ___ est la gare?", o: ["où", "que", "laquelle", "quoi"], a: 0 },
+    { q: "Le travail ___ par l'équipe.", o: ["était en train d'être fait", "était fait", "est fait", "a été fait"], a: 0 },
+    { q: "Les résultats étaient bons; ___, nous sommes contents.", o: ["donc", "cependant", "bien que", "mais"], a: 0 },
+    { q: "Elle était fatiguée; ___, elle a continué à travailler.", o: ["cependant", "donc", "parce que", "quand"], a: 0 },
+    { q: "Le projet est en retard; ___, nous devons travailler plus vite.", o: ["donc", "cependant", "bien que", "mais"], a: 0 },
+    { q: "C'était hier ___ nous nous sommes rencontrés.", o: ["que", "quand", "où", "lequel"], a: 0 }
+];
+
+const nivel6FR = [
+    { q: "Il est essentiel qu'elle ___ à l'heure.", o: ["arrive", "arrived", "arriver", "arrivant"], a: 0 },
+    { q: "Je demande qu'il ___ la vérité.", o: ["dise", "dit", "dire", "disant"], a: 0 },
+    { q: "Il est important que tout le monde ___ préparé.", o: ["soit", "est", "soit", "était"], a: 0 },
+    { q: "Tu ___ mieux partir maintenant.", o: ["ferais mieux de", "mieux de partir", "mieux partir", "mieux parti"], a: 0 },
+    { q: "Elle ___ plutôt rester à la maison.", o: ["préférerait", "préférerai", "préférer", "préférant"], a: 0 },
+    { q: "Elle ___ être la directrice.", o: ["pourrait", "peut", "doit", "devrait"], a: 0 },
+    { q: "Tu ___ dû me parler du problème.", o: ["aurais dû", "devais", "devras", "dois"], a: 0 },
+    { q: "Il ___ être la bonne décision.", o: ["pourrait", "peut", "doit", "devrait"], a: 0 },
+    { q: "Je wish je ___ pas dit ça.", o: ["n'avais pas dit", "n'ai pas dit", "ne dis pas", "ne dirai pas"], a: 0 },
+    { q: "Si seulement elle ___ avant.", o: ["avait su", "su", "savait", "saura"], a: 0 },
+    { q: "Elle agit comme si elle ___ la propriétaire.", o: ["était", "est", "était été", "soit"], a: 0 },
+    { q: "J'apprécie ___ cette opportunité.", o: ["que vous donniez", "vous donner", "donnant", "donné"], a: 0 },
+    { q: "Il regrette ___ ça.", o: ["de dire", "dire", "dit", "disant"], a: 0 },
+    { q: "Je ne supporte pas ___ ici.", o: ["d'attendre", "attendre", "attendu", "attends"], a: 0 },
+    { q: "___ elle est talentueuse, elle manque d'expérience.", o: ["Bien que", "Parce que", "Si", "Quand"], a: 0 }
+];
+
+const lessonsFR = {
+    1: nivel1FR, 2: nivel2FR, 3: nivel3FR, 4: nivel4FR, 5: nivel5FR, 6: nivel6FR
+};
+
+// French explanations
+const explicacoesFR = {
+    "suis": "Use 'suis' com Je (eu sou/eu estou)",
+    "es": "Use 'es' com tu (você é/estado)",
+    "est": "Use 'est' com il/elle (ele/ela é/está)",
+    "êtes": "Use 'êtes' com Vous (vocês/você está)",
+    "sommes": "Use 'sommes' com Nous (nós somos/estamos)",
+    "sont": "Use 'sont' com ils/elles (eles/elas são/estão)",
+    "ai": "Use 'ai' com Je para passado composto (eu tenho/eu tive)",
+    "as": "Use 'as' com Tu (tu tens/tu tives)",
+    "a": "Use 'a' com il/elle (ele/ela tem/teve)",
+    "avons": "Use 'avons' com Nous (nós temos/tivemos)",
+    "ont": "Use 'ont' com ils/elles (eles/elas têm/tiveram)",
+    "un": "Un = artigo masculino singular",
+    "une": "Une = artigo feminino singular",
+    "des": "Des = artigo plural",
+    "va": "Va = 3ª pessoa presente de aller (ir)",
+    "vas": "Vas = 2ª pessoa presente de aller",
+    "allé": "Allé = particípio passado de aller (ir)",
+    "est": "Est = 3ª pessoa presente de être (ser/estar)",
+    "était": "Était = imperfeito de être",
+    "été": "Été = particípio passado de être",
+    "ai étudié": "Ai étudié = passé composé de étudier",
+    "parle": "Parle = 1ª/3ª pessoa presente de parler",
+    "parles": "Parles = 2ª pessoa presente de parler",
+    "parlé": "Parlé = particípio passado de parler",
+    "aime": "Aime = presente de aimer (gostar)",
+    "as-tu": "As-tu = pergunta com 'est-ce que' ou inversão",
+    "où": "Où = onde (lugar)",
+    "que": "Que = relativo para coisas",
+    "qui": "Qui = relativo para pessoas",
+    "lequel": "Lequel = qual (entre outros)",
+    "si": "Si = se (condicional)",
+    "quand": "Quand = quando",
+    "pourrait": "Pourrait = condicional de pouvoir (poderia)",
+    "devrait": "Devrait = condicional de devoir (deveria)",
+    "serait": "Serait = condicional de être (seria)",
+    "aurait": "Aurait = condicional de avoir (teria)",
+    "pouvait": "Pouvait = imperfeito de pouvoir (podia)",
+    "could": "Could = poder (passado ou chance)",
+    "should": "Should = deveria (conselho)"
+};
+
+// Override loadQuestion para usar dados do idioma correto
+const origLoadQuestion = loadQuestion;
+loadQuestion = function() {
+    if (!user.placementDone) { showNoTest(); return; }
+    
+    let list;
+    let raw;
+    if (currentLang === 'fr') {
+        list = lessonsFR[user.currentLevel] || nivel1FR;
+        raw = list[user.lessonIndex % list.length];
+        
+        const opts = shuffle(raw.o);
+        const correta = raw.o[raw.a];
+        currentQ = { q: raw.q, opts: opts, resposta: correta };
+        
+        document.getElementById('lesson-prompt').innerHTML = `
+            <p>Niveau: ${levels[user.currentLevel].name}</p>
+            <p style="margin-top:10px">${raw.q}</p>
+        `;
+    } else {
+        origLoadQuestion();
+        return;
+    }
+    
+    document.getElementById('lesson-result').textContent = '';
+    const btns = document.querySelectorAll('#lesson-options .option');
+    btns.forEach((btn, i) => {
+        btn.textContent = opts[i];
+        btn.classList.remove('correct', 'wrong');
+        btn.disabled = false;
+    });
+};
+
+// Override getExplicacao para francês
+const origGetExplicacao = getExplicacao;
+getExplicacao = function(pergunta, resposta) {
+    if (currentLang === 'fr') {
+        for (const [palavra, explicacao] of Object.entries(explicacoesFR)) {
+            if (pergunta.includes(palavra) || resposta.includes(palavra)) {
+                return explicacao;
+            }
+        }
+        return "Pratique esse padrão para fixar!";
+    }
+    return origGetExplicacao(pergunta, resposta);
+};
+
+// Override loadPlacementQ
+const origLoadPlacementQ = loadPlacementQ;
+loadPlacementQ = function() {
+    if (currentLang === 'fr') {
+        if (placementIndex >= placementTestFR.length) {
+            finishPlacementTest();
+            return;
+        }
+        
+        const raw = placementTestFR[placementIndex];
+        const opts = shuffle(raw.o);
+        const correta = raw.o[raw.a];
+        
+        currentQ = { q: raw.q, opts: opts, resposta: correta };
+        
+        document.getElementById('placement-question').textContent = raw.q;
+        document.getElementById('placement-progress').textContent = `Question: ${placementIndex + 1}/40`;
+        document.getElementById('placement-result').textContent = '';
+        
+        const btns = document.querySelectorAll('#placement-options .option');
+        btns.forEach((btn, i) => {
+            btn.textContent = opts[i];
+            btn.classList.remove('correct', 'wrong');
+            btn.disabled = false;
+        });
+    } else {
+        origLoadPlacementQ();
+    }
+};
