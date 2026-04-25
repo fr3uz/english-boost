@@ -441,7 +441,7 @@ function checkPlacement(btn) {
     setTimeout(() => {
         placementIndex++;
         loadPlacementQ();
-    }, 1000);
+    }, 1200);
 }
 
 function finishPlacementTest() {
