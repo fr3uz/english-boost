@@ -309,7 +309,6 @@ function responder(btn) {
         btn.classList.add('correct');
         user.xp += 10;
         som('acerto');
-        // Mensagem de acerto
         const msgDiv = document.getElementById('result');
         if (msgDiv) {
             msgDiv.innerHTML = `
@@ -325,7 +324,6 @@ function responder(btn) {
         btns.forEach(b => {
             if (b.textContent === currentQ.resposta) b.classList.add('correct');
         });
-        // Mensagem de erro + explicar
         const msgDiv = document.getElementById('result');
         if (msgDiv) {
             const exp = getExplicacao(currentQ.resposta);
@@ -337,8 +335,6 @@ function responder(btn) {
                 <button onclick="abrirExplicacao()" style="background:var(--secondary); color:#fff; border:none; padding:10px 16px; border-radius:8px; margin-top:12px; cursor:pointer;">💬 Entender</button>
             `;
         }
-    }
-}
     }
     
     saveUser();
