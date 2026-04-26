@@ -1,4 +1,4 @@
-const CACHE_NAME = 'englishboost-v1';
+const CACHE_NAME = 'fnfipf-v1';
 const urlsToCache = [
   '/',
   '/index.html',
