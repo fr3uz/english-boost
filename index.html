@@ -28,7 +28,7 @@
         
         <!-- Language Selector -->
         <div class="lang-selector">
-            <select id="lang" onchange="trocarIdioma(this.value); ativarAudio()">
+            <select id="lang" onchange="trocarIdioma(this.value)">
                 <option value="en">🇺🇸 English</option>
                 <option value="fr">🇫🇷 Français</option>
             </select>
@@ -42,7 +42,7 @@
                 <div id="lesson">
                     <div id="no-test-msg" style="display:none;">
                         <p>⚠️ Você ainda não fez o teste de nivelamento.</p>
-                        <button class="btn" onclick="mostrar('test')">📋 Fazer Teste</button>
+                        <button class="btn" onclick="mostrar('test'); som('clique')">📋 Fazer Teste</button>
                     </div>
                     <div id="lesson-content" style="display:none;">
                         <p id="question">Clique em Iniciar para começar</p>
@@ -76,7 +76,7 @@
                     <button onclick="responderTeste(this)">D</button>
                 </div>
                 <p id="test-result"></p>
-                <button class="btn" id="start-test-btn" onclick="iniciarTeste()">▶ Iniciar Teste</button>
+                <button class="btn" id="start-test-btn" onclick="iniciarTeste(); som('clique')">▶ Iniciar Teste</button>
                 <button class="btn" id="next-test-btn" onclick="proximaEtapa()" style="display:none;">Continuar</button>
             </section>
             
@@ -109,9 +109,9 @@
         
         <!-- Navigation -->
         <nav class="nav">
-            <button class="nav-btn active" onclick="mostrar('home')">🏠<br><span>Início</span></button>
-            <button class="nav-btn" onclick="mostrar('test')">📝<br><span>Teste</span></button>
-            <button class="nav-btn" onclick="mostrar('profile')">👤<br><span>Perfil</span></button>
+            <button class="nav-btn active" onclick="mostrar('home'); som('clique')">🏠<br><span>Início</span></button>
+            <button class="nav-btn" onclick="mostrar('test'); som('clique')">📝<br><span>Teste</span></button>
+            <button class="nav-btn" onclick="mostrar('profile'); som('clique')">👤<br><span>Perfil</span></button>
         </nav>
     </div>
     

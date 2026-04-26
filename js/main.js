@@ -90,16 +90,16 @@ const perguntasFR = {
 function som(tipo) {
     try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const osc2 = ctx.createOscillator();
-        const gain = ctx.createGain();
-        const gain2 = ctx.createGain();
-        osc.connect(gain);
-        osc2.connect(gain2);
-        gain.connect(ctx.destination);
-        gain2.connect(ctx.destination);
         if (ctx.state === 'suspended') ctx.resume();
         if (tipo === 'acerto') {
+            const osc = ctx.createOscillator();
+            const osc2 = ctx.createOscillator();
+            const gain = ctx.createGain();
+            const gain2 = ctx.createGain();
+            osc.connect(gain);
+            osc2.connect(gain2);
+            gain.connect(ctx.destination);
+            gain2.connect(ctx.destination);
             osc.type = 'sine';
             osc2.type = 'sine';
             osc.frequency.setValueAtTime(523, ctx.currentTime);
@@ -114,7 +114,11 @@ function som(tipo) {
             osc2.start(ctx.currentTime + 0.25);
             osc.stop(ctx.currentTime + 0.4);
             osc2.stop(ctx.currentTime + 0.6);
-        } else {
+        } else if (tipo === 'erro') {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
             osc.type = 'sawtooth';
             osc.frequency.setValueAtTime(180, ctx.currentTime);
             osc.frequency.linearRampToValueAtTime(100, ctx.currentTime + 0.3);
@@ -122,6 +126,35 @@ function som(tipo) {
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
             osc.start();
             osc.stop(ctx.currentTime + 0.4);
+        } else if (tipo === 'idioma') {
+            const osc = ctx.createOscillator();
+            const osc2 = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            osc2.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc2.type = 'sine';
+            osc.frequency.setValueAtTime(880, ctx.currentTime);
+            osc.frequency.setValueAtTime(1100, ctx.currentTime + 0.08);
+            osc2.frequency.setValueAtTime(1320, ctx.currentTime + 0.16);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+            osc.start();
+            osc2.start(ctx.currentTime + 0.16);
+            osc.stop(ctx.currentTime + 0.3);
+            osc2.stop(ctx.currentTime + 0.3);
+        } else if (tipo === 'clique') {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, ctx.currentTime);
+            gain.gain.setValueAtTime(0.08, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1);
         }
     } catch(e) {}
 }
@@ -239,16 +272,18 @@ function mostrar(id) {
 
 // ===== IDIOMA =====
 function trocarIdioma(lang) {
+    const langChanged = currentLang !== lang;
     currentLang = lang;
     saveLang();
     updateDisplay();
+    if (langChanged) som('idioma');
     const isFr = lang === 'fr';
     if (user.testFeito) loadQuestion();
     document.getElementById('lesson-title').textContent = isFr ? 'Leçon du Jour' : 'Lição do Dia';
     document.getElementById('profile-title').textContent = isFr ? 'Mon Profil' : 'Meu Perfil';
-    document.getElementById('test-title').textContent = isFr ? 'Test de Positionnement' : 'Teste de Nivelamento';
+    document.getElementById('test-title').innerHTML = isFr ? '📋 Test de Positionnement' : '📋 Teste de Nivelamento';
     document.getElementById('test-desc').innerHTML = isFr
-        ? 'Répondez à 10 questions.<br>Pour passer: au moins 7 bonnes réponses.<br>3 étapes: Basique → Intermédiaire → Avancé'
+        ? 'Responda 10 perguntas.<br>Para passar: pelo menos 7 acertos.<br>3 etapas: Básico → Intermediário → Avançado'
         : 'Responda 10 perguntas.<br>Para passar: pelo menos 7 acertos.<br>3 etapas: Básico → Intermediário → Avançado';
     if (document.getElementById('test').style.display !== 'none') {
         loadPerguntaTeste();
