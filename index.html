@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0f0f0f">
+    <meta name="description" content="Aprenda inglês e francês com teste de nivelamento e simulado CELPIP">
     <meta name="apple-mobile-web-app-title" content="FNFIPF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>faiz nois fala ingreis pur favor</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
     <div class="app">
@@ -28,10 +34,14 @@
         
         <!-- Language Selector -->
         <div class="lang-selector">
-            <select id="lang" onchange="trocarIdioma(this.value)">
-                <option value="en">🇺🇸 English</option>
-                <option value="fr">🇫🇷 Français</option>
-            </select>
+            <div class="lang-buttons" role="group" aria-label="Selecione o idioma">
+                <button class="lang-btn" id="lang-en" onclick="trocarIdioma('en')" aria-pressed="true">
+                    🇬🇧 English
+                </button>
+                <button class="lang-btn" id="lang-fr" onclick="trocarIdioma('fr')" aria-pressed="false">
+                    🇨🇦 Français
+                </button>
+            </div>
         </div>
         
         <!-- Main Content -->
@@ -41,16 +51,16 @@
                 <h2>📅 <span id="lesson-title">Lição do Dia</span></h2>
                 <div id="lesson">
                     <div id="no-test-msg" style="display:none;">
-                        <p>⚠️ Você ainda não fez o teste de nivelamento.</p>
-                        <button class="btn" onclick="mostrar('test'); som('clique')">📋 Fazer Teste</button>
+                        <p id="no-test-text">⚠️ Você ainda não fez o teste de nivelamento.</p>
+                        <button class="btn" id="no-test-btn" onclick="mostrar('test'); som('clique')">📋 Fazer Teste</button>
                     </div>
                     <div id="lesson-content" style="display:none;">
                         <p id="question">Clique em Iniciar para começar</p>
                         <div class="options" id="options">
-                            <button onclick="responder(this)">A</button>
-                            <button onclick="responder(this)">B</button>
-                            <button onclick="responder(this)">C</button>
-                            <button onclick="responder(this)">D</button>
+                            <button class="option" onclick="responder(this)">A</button>
+                            <button class="option" onclick="responder(this)">B</button>
+                            <button class="option" onclick="responder(this)">C</button>
+                            <button class="option" onclick="responder(this)">D</button>
                         </div>
                     </div>
                 </div>
@@ -70,10 +80,10 @@
                 </div>
                 <p id="test-question"></p>
                 <div class="options" id="test-options" style="display:none;">
-                    <button onclick="responderTeste(this)">A</button>
-                    <button onclick="responderTeste(this)">B</button>
-                    <button onclick="responderTeste(this)">C</button>
-                    <button onclick="responderTeste(this)">D</button>
+                    <button class="option" onclick="responderTeste(this)">A</button>
+                    <button class="option" onclick="responderTeste(this)">B</button>
+                    <button class="option" onclick="responderTeste(this)">C</button>
+                    <button class="option" onclick="responderTeste(this)">D</button>
                 </div>
                 <p id="test-result"></p>
                 <button class="btn" id="start-test-btn" onclick="iniciarTeste(); som('clique')">▶ Iniciar Teste</button>
@@ -86,24 +96,33 @@
                 
                 <!-- Avatar -->
                 <div style="text-align:center; margin-bottom:16px;">
-                    <div id="avatar-display" style="font-size:3rem; cursor:pointer;" onclick="editarAvatar()">😀</div>
-                    <p style="font-size:0.8rem; color:var(--text-muted);">Clique no avatar para mudar</p>
+                    <div id="avatar-display" style="font-size:3rem; cursor:pointer;" onclick="mostrarAvatarSelector()">😀</div>
+                    <p id="avatar-hint" style="font-size:0.8rem; color:var(--text-muted);">Clique no avatar para mudar</p>
+                </div>
+                
+                <!-- Avatar Selector Modal -->
+                <div id="avatar-selector" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.9); z-index:100; align-items:center; justify-content:center;">
+                    <div style="background:var(--bg-card); padding:20px; border-radius:12px; max-width:320px;">
+                        <h3 id="avatar-selector-title" style="margin-bottom:16px; text-align:center;">Escolha seu Avatar</h3>
+                        <div id="avatar-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:16px;"></div>
+                        <button class="btn" id="avatar-selector-cancel" onclick="fecharAvatarSelector()">Cancelar</button>
+                    </div>
                 </div>
                 
                 <!-- Nome -->
                 <div style="margin-bottom:16px;">
-                    <input type="text" id="nome-input" placeholder="Seu nome" style="width:100%; text-align:center; font-size:1.1rem; padding:12px;" onchange="salvarNome()">
+                    <input type="text" id="nome-input" placeholder=" Seu nome" style="width:100%; text-align:center; font-size:1.1rem; padding:12px;" onchange="salvarNome()">
                 </div>
                 
                 <div class="profile-info">
-                    <div><span>XP:</span> <b id="profile-xp">0</b></div>
-                    <div><span>Streak:</span> <b id="profile-streak">0</b> dias</div>
-                    <div><span>Hearts:</span> <b id="profile-hearts">5</b></div>
-                    <div><span>Nível:</span> <b id="profile-level">-</b></div>
-                    <div><span>Teste:</span> <b id="profile-test">Não feito</b></div>
+                    <div><span id="profile-xp-label">XP:</span> <b id="profile-xp">0</b></div>
+                    <div><span id="profile-streak-label">Streak:</span> <b id="profile-streak">0</b> <span id="profile-streak-days">dias</span></div>
+                    <div><span id="profile-hearts-label">Hearts:</span> <b id="profile-hearts">5</b></div>
+                    <div><span id="profile-level-label">Nível:</span> <b id="profile-level">-</b></div>
+                    <div><span id="profile-test-label">Teste:</span> <b id="profile-test">Não feito</b></div>
                 </div>
-                <button class="btn" onclick="iniciarTeste()">📋 Fazer Teste</button>
-                <button class="btn danger" onclick="resetar()">🔄 Resetar</button>
+                <button class="btn" id="profile-test-btn" onclick="iniciarTeste()">📋 Fazer Teste</button>
+                <button class="btn danger" id="profile-reset-btn" onclick="resetar()">🔄 Resetar</button>
             </section>
         </main>
         
@@ -116,5 +135,14 @@
     </div>
     
     <script src="js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('SW registrado:', reg.scope))
+                    .catch(err => console.error('SW erro:', err));
+            });
+        }
+    </script>
 </body>
 </html>

@@ -159,32 +159,122 @@ function som(tipo) {
     } catch(e) {}
 }
 
-// ===== EXPLICAÇÕES =====
-const explicacoes = {
-    is: "Use 'is' com he/she/it", are: "Use 'are' com you/we/they", am: "Use 'am' com I",
-    in: "In = em (lugar)", on: "On = em (superfície)", at: "At = em (lugar específico)",
-    an: "An antes de vogal", a: "A antes de consoante", What: "What = o que/qual",
-    Where: "Where = onde", goes: "Goes = 3ª pessoa de go", speaks: "Speaks = 3ª pessoa de speak",
-    Do: "Do = auxiliar", drink: "Drink = beber", have: "Have = ter", has: "Has = ele/ela tem",
-    went: "Went = passado de go", watched: "Watched = passado de watch",
-    studied: "Studied = passado de study", was: "Was = passado de be (he/she/it)",
-    were: "Were = passado plural de be", can: "Can = poder", will: "Will = futuro",
-    were: "Were = Condicional com if"
+// ===== EXPLICAÇÕES PROFESSOR JAMES (INGLÊS) =====
+const explicacoesEN = {
+    is: "🔹 BE (ser/estar) - Usa-se com he/she/it. Ex: 'She is a teacher' (Ela é professora). 'It is hot' (Está quente).",
+    are: "🔹 BE - Usa-se com you/we/they. Ex: 'You are right' (Você está certo). 'They are students' (Eles são estudantes).",
+    am: "🔹 BE - Usa-se APENAS com I. Ex: 'I am happy' (Eu estou feliz). Nunca use 'am' com outros pronomes!",
+    in: "🔹 PREPOSITION 'In' = em (lugar). Usado para cidades, países, ambientes fechados. Ex: 'I live in Brazil' (Eu moro no Brasil).",
+    on: "🔹 PREPOSITION 'On' = em (superfície). Ex: 'The book is on the table' (O livro está na mesa).",
+    at: "🔹 PREPOSITION 'At' = em (lugar específico). Ex: 'at home' (em casa), 'at school' (na escola).",
+    an: "🔹 ARTICLE 'An' = um/uma. Usa-se antes de vogal (sons vocálicos). Ex: 'an apple' (uma maçã), 'an hour' (uma hora).",
+    a: "🔹 ARTICLE 'A' = um/uma. Usa-se antes de consoante. Ex: 'a book' (um livro), 'a car' (um carro).",
+    What: "🔹 QUESTION WORD 'What' = o que/qual. Pergunta sobre coisas. 'What is your name?' (Qual é o seu nome?)",
+    Where: "🔹 QUESTION WORD 'Where' = onde. Pergunta sobre lugar. 'Where do you live?' (Onde você mora?)",
+    How: "🔹 QUESTION WORD 'How' = como. Pergunta sobre modo/condição. 'How are you?' (Como você está?)",
+    goes: "🔹 GO (3ª pessoa) - 'goes'. Usado com he/she/it. Ex: 'She goes to school' (Ela vai para escola).",
+    speaks: "🔹 SPEAK (3ª pessoa) - 'speaks'. Ex: 'He speaks English' (Ele fala inglês).",
+    Do: "🔹 AUXILIAR 'Do' - Forma perguntas e negativas. CUIDADO: não é a resposta! 'Do you speak English?' (Você fala inglês?)",
+    Does: "🔹 AUXILIAR 'Does' - Versão de Do para 3ª pessoa. 'Does she speak Portuguese?' (Ela fala português?)",
+    drink: "🔹 VERB 'drink' - Beber. Presente: 'I drink coffee'. Passado: 'drank'. Ex: 'I drank water yesterday'.",
+    have: "🔹 VERB 'have' - Ter (possession). Ex: 'I have a car' (Eu tenho um carro).",
+    has: "🔹 VERB 'have' (3ª pessoa) - Tem. 'She has two brothers' (Ela tem dois irmãos).",
+    went: "🔹 GO (passado) - 'went'. É IRREGULAR! Não é 'goed'! Ex: 'I went to the park yesterday'.",
+    watched: "🔹 WATCH (passado) - 'watched'. watching = assistindo. Ex: 'I watched the movie' (Eu assisti o filme).",
+    studied: "🔹 STUDY (passado) - 'studied'. studying = estudando. Ex: 'She studied in the US' (Ela estudou nos EUA).",
+    was: "🔹 BE (passado) - 'was' para he/she/it. 'He was happy' (Ele estava feliz). 'She was at home'.",
+    were: "🔹 BE (passado plural) - 'were' para you/we/they. 'We were in Brazil'. 'They were happy'.",
+    could: "🔹 MODAL 'could' - Poder (possibilidade passada). 'I could go' (Eu poderia ir).",
+    can: "🔹 MODAL 'can' - Poder/habilidade. 'I can speak English' (Eu sei falar inglês).",
+    will: "🔹 MODAL 'will' - Futuro. 'I will go' (Eu vou ir). También: 'I'll help you'.",
+    tell: "🔹 VERB 'tell' (3ª pessoa imperative). 'Tell the truth' (Diga a verdade). Pouco usado 'tells'.",
+    arrives: "🔹 VERB 'arrive' (subjuntivo) - 'arrives'. Usado após expressões como 'it's essential that'. 'She arrives on time'.",
+    leave: "🔹 VERB 'leave' - Sair/partir. 'You'd better leave now' (Você melhor ir agora).",
+    had: "🔹 HAVE (passado) - 'had'. 'I had a car' (Eu tinha um carro). Passado de have.",
+    were: "🔹 CONDITIONAL - 'If I were rich...' (Se eu fosse rico...). Usa 'were' não 'was' no if!",
+    arrived: "🔹 ARRIVE (passado) - 'arrived'. 'He arrived late' (Ele chegou tarde)."
+};
+
+// ===== EXPLICAÇÕES PROFESSOR CROISSANT (FRANCÊS) =====
+const explicacoesFR = {
+    suis: "🔹 ÊTRE (sou/estou) - Usa-se com Je. Ex: 'Je suis français' (Eu sou francês). Apenas com je!",
+    es: "🔹 ÊTRE (és/estás) - Usa-se com tu. Ex: 'Tu es grand' (Você é grande). Apenas com tu!",
+    est: "🔹 ÊTRE (é/está) - Usa-se com il/elle. Ex: 'Il est ici' (Ele está aqui).",
+    sommes: "🔹 ÊTRE (somos/estamos) - Usa-se com nous. 'Nous sommes prêts' (Estamos prontos).",
+    êtes: "🔹 ÊTRE (são/estão) - Usa-se com vous/ils/elles. 'Vous êtes cool'.",
+    suisAllé: "🔹 ALLER (passado) - 'suis allé(e)' = fui/fui. Verbo IRREGULAR! Ex: 'Je suis allé au parc'.",
+    aiAllé: "🔹 ALLER (passado) - 'ai allé(e)' = fui/fui. Use com Je. 'Je suis allé' ou 'Je suis allée'.",
+    aRegardé: "🔹 REGARDER (passado) - 'a regardé' = assistiu. Passé composé. 'Elle a regardé le film'.",
+    vient: "🔹 VENIR (3ª pessoa) - 'vient' = vem/vem de. 'Elle vient du Brésil' (Ela vem do Brasil).",
+    vas: "🔹 ALLER (presente) - 'vas' = vai (tu). 'Comment vas-tu?' (Como você está?). Formal!",
+    va: "🔹 ALLER (presente) - 'va' = vai (il/elle). 'Il va bien' (Ele vai bem).",
+    allons: "🔹 ALLER (presente) - 'allons' = vamos (nous). 'Nous allons diner' (Vamos jantar).",
+    allez: "🔹 ALLER (presente) - 'allez' = vão/vão. 'Vous allez bien?' (Vocês vão bem?).",
+    parle: "🔹 PARLER (presente) - 'parle' = fala (je/tu/il/elle). 'Il parle français' (Ele fala francês).",
+    parles: "🔹 PARLER (presente tu) - 'parles' = fala (tu). 'Tu parles portugais?' (Você fala português?).",
+    parlons: "🔹 PARLER (presente nous) - 'parlons' = falamos. 'Nous parlons anglais'.",
+    parlent: "🔹 PARLER (presente ils/elles) - 'parlent' = falam. 'Ils parlent espagnol'.",
+    bois: "🔹 BOIRE (presente) - 'bois' = bebo/bebe/tu. 'Je bois du café' (Eu bebo café).",
+    boi: "🔹 BOIRE (passado) - 'bû' = bebido. Passé composé. 'J'ai bu' (Eu bebi).",
+    ai: "🔹 AVOIR (presente) - 'ai' = tenho (je). 'J'ai une voiture' (Eu tenho um carro).",
+    as: "🔹 AVOIR (presente) - 'as' = tens (tu). 'Tu as un chien?' (Você tem um cachorro?).",
+    a: "🔹 AVOIR (presente) - 'a' = tem (il/elle). 'Elle a trois frères'.",
+    avons: "🔹 AVOIR (presente) - 'avons' = temos (nous). 'Nous avons fini'.",
+    avez: "🔹 AVOIR (presente) - 'avez' = têm (vous). 'Vous avez raison'.",
+    ont: "🔹 AVOIR (presente) - 'ont' = têm (ils/elles). 'Ils ont faim'.",
+    étais: "🔹 ÊTRE (passado) - 'étais' = era/estava (je/tu). 'J'étais fatigué'.",
+    était: "🔹 ÊTRE (passado) - 'était' = era/estava (il/elle). 'Elle était contente'.",
+    était: "🔹 CONDITIONNEL - 'si + imparfait': 'Si j'étais riche...' (Se eu fosse rico...).",
+    serait: "🔹 CONDITIONNEL - 'serait' = seria. 'Il serait content'. Para hipótese.",
+    était: "🔹 PASSIF COMPOSÉ - usa-se avoir. 'Elle a été' (Ela foi/foi stata).",
+    pris: "🔹 PRENDRE (passado) - 'pris' = tomei/tirei. 'J'ai pris le petit-déjeuner'.",
+    prise: "🔹 PRENDRE (passado fem) - 'prise'. 'La décision a été prise' (A decisão foi tomada).",
+    pris: "🔹 APPRENDRE (passado) - 'appris' = aprendi. 'J'ai appris le français'.",
+    comprise: "🔹 COMPRENDRE (passado) - 'compris(e)' = entendi. 'J'ai compris!' (Entendi!).",
+    faite: "🔹 FAIRE (passado) - 'fait(e)' = fatto. 'Le travail est fait' (O trabalho está fatto).",
+    allais: "🔹 ALLER (imparfait) - 'allais' = ia. 'Je allais à l'école' (Eu ia para a escola).",
+    irais: "🔹 CONDITIONNEL - 'irais' =aria. 'J'irais au Japon' (Euaria ao Japão)."
 };
 
 function getExplicacao(resposta) {
-    for (const [key, valor] of Object.entries(explicacoes)) {
-        if (resposta.includes(key)) return valor;
+    const isFr = currentLang === 'fr';
+    const explicacoes = isFr ? explicacoesFR : explicacoesEN;
+    const resp = resposta.toLowerCase().trim();
+    
+    // Verifica match exato primeiro
+    if (explicacoes[resp]) return explicacoes[resp];
+    
+    // Para respostas com espaços (like "will be flying", "had studied"), procura cada palavra
+    const palavras = resp.split(' ');
+    for (const palavra of palavras) {
+        if (explicacoes[palavra]) return explicacoes[palavra];
     }
-    return "Pratique esse padrão!";
+    
+    // Fallback: mostra dicinha genérica baseada no padrão
+    if (resp.includes('ed') && !isFr) {
+        return "🔹 PASSADO - Verbos em '-ed' são passado simples! Ex: 'walked', 'talked', 'played'.";
+    }
+    if (resp.includes('ing') && !isFr) {
+        return "🔹 ING - Pode ser gerúndio ou adjetivo. 'I am walking' (andando) vs 'interesting' (interessante).";
+    }
+    if (resp.includes('s') && resp.length > 2 && !isFr) {
+        return "🔹 3ª PESSOA - Verbos com 's' no final são 3ª pessoa (he/she/it).";
+    }
+    
+    // Fallback genérico
+    return isFr 
+        ? "📚 Dica: Estude este padrão gramática! Continue praticando."
+        : "📚 Tip: Study this grammar pattern! Keep practicing.";
 }
 
 function abrirExplicacao() {
     if (!currentQ) return;
+    const isFr = currentLang === 'fr';
+    const professor = isFr ? '🥐 Professor Croissant' : '🧑‍🏫 Professor James';
     const exp = getExplicacao(currentQ.resposta);
     document.getElementById('result').innerHTML = `
         <div style="background:#252525; padding:12px; border-radius:10px; margin-top:12px;">
-            <p><strong>💬 Professor James:</strong></p>
+            <p><strong>${professor}:</strong></p>
             <p style="margin-top:8px; color:var(--primary);">${exp}</p>
             <button onclick="loadQuestion()" style="background:var(--primary); color:#000; border:none; padding:8px 16px; border-radius:8px; margin-top:12px; cursor:pointer;">Próxima →</button>
         </div>
@@ -197,7 +287,14 @@ function ativarAudio() {
 }
 
 // ===== ESTADO =====
-let user = { nome: '', avatar: '😀', xp: 0, streak: 0, hearts: 5, nivel: '-', testFeito: false, testeEtapa: 0, testeAcertos: 0, testeIndex: 0 };
+let user = { 
+    nome: '', avatar: '😀', xp: 0, streak: 0, hearts: 5, 
+    nivelEn: '-', nivelFr: '-',
+    testeFeitoEn: false, testeFeitoFr: false,
+    testeEtapaEn: 0, testeEtapaFr: 0,
+    testeAcertosEn: 0, testeAcertosFr: 0,
+    testeIndexEn: 0, testeIndexFr: 0
+};
 let currentLang = 'en';
 let currentQ = null;
 
@@ -213,7 +310,9 @@ function init() {
     
     loadUser();
     updateDisplay();
-    if (!user.testFeito) {
+    
+    const testFeito = currentLang === 'fr' ? user.testeFeitoFr : user.testeFeitoEn;
+    if (!testFeito) {
         document.getElementById('no-test-msg').style.display = 'block';
         document.getElementById('lesson-content').style.display = 'none';
     } else {
@@ -224,6 +323,9 @@ function init() {
     document.getElementById('avatar-display').textContent = user.avatar;
     document.getElementById('nome-input').value = user.nome || '';
     document.getElementById('home').style.display = 'block';
+    
+    // Aplica traduções do idioma atual
+    trocarIdioma(currentLang);
 }
 
 // ===== STORAGE =====
@@ -251,9 +353,16 @@ function updateDisplay() {
     document.getElementById('profile-xp').textContent = user.xp;
     document.getElementById('profile-streak').textContent = user.streak;
     document.getElementById('profile-hearts').textContent = user.hearts;
-    document.getElementById('profile-level').textContent = user.nivel;
-    document.getElementById('profile-test').textContent = user.testFeito ? 'Concluído' : 'Não feito';
-    document.getElementById('lang').value = currentLang;
+    const nivel = currentLang === 'fr' ? user.nivelFr : user.nivelEn;
+    const testFeito = currentLang === 'fr' ? user.testeFeitoFr : user.testeFeitoEn;
+    document.getElementById('profile-level').textContent = nivel || '-';
+    document.getElementById('profile-test').textContent = testFeito ? 'Concluído' : 'Não feito';
+    
+    // Updates language buttons
+    document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+    document.getElementById('lang-fr').classList.toggle('active', currentLang === 'fr');
+    document.getElementById('lang-en').setAttribute('aria-pressed', currentLang === 'en');
+    document.getElementById('lang-fr').setAttribute('aria-pressed', currentLang === 'fr');
 }
 
 // ===== NAVEGAÇÃO =====
@@ -279,36 +388,93 @@ function trocarIdioma(lang) {
     if (langChanged) som('idioma');
     const isFr = lang === 'fr';
     if (user.testFeito) loadQuestion();
-    document.getElementById('lesson-title').textContent = isFr ? 'Leçon du Jour' : 'Lição do Dia';
-    document.getElementById('profile-title').textContent = isFr ? 'Mon Profil' : 'Meu Perfil';
-    document.getElementById('test-title').innerHTML = isFr ? '📋 Test de Positionnement' : '📋 Teste de Nivelamento';
+    document.getElementById('lesson-title').textContent = isFr ? 'Leçon du Jour' : 'Daily Lesson';
+    document.getElementById('profile-title').textContent = isFr ? 'Mon Profil' : 'My Profile';
+    document.getElementById('test-title').innerHTML = isFr ? '📋 Test de Positionnement' : '📋 Placement Test';
+    document.getElementById('no-test-text').textContent = isFr ? "⚠️ Vous n'avez pas encore passé le test." : "⚠️ You haven't taken the test yet.";
+    document.getElementById('no-test-btn').textContent = isFr ? '📋 Passer le Test' : '📋 Take Test';
     document.getElementById('test-desc').innerHTML = isFr
-        ? 'Responda 10 perguntas.<br>Para passar: pelo menos 7 acertos.<br>3 etapas: Básico → Intermediário → Avançado'
-        : 'Responda 10 perguntas.<br>Para passar: pelo menos 7 acertos.<br>3 etapas: Básico → Intermediário → Avançado';
+        ? 'Répondez à 10 questions.<br>Pour passer: au moins 7 bonnes.<br>3 étapes: Basique → Intermédiaire → Avancé'
+        : 'Answer 10 questions.<br>To pass: at least 7 correct.<br>3 stages: Basic → Intermediate → Advanced';
+    document.getElementById('avatar-hint').textContent = isFr ? 'Cliquez sur avatar pour changer' : 'Click avatar to change';
+    document.getElementById('nome-input').placeholder = isFr ? 'Votre nom' : 'Your name';
+    document.getElementById('profile-xp-label').textContent = isFr ? 'XP:' : 'XP:';
+    document.getElementById('profile-streak-label').textContent = isFr ? 'Série:' : 'Streak:';
+    document.getElementById('profile-streak-days').textContent = isFr ? 'jours' : 'days';
+    document.getElementById('profile-hearts-label').textContent = isFr ? 'Vies:' : 'Hearts:';
+    document.getElementById('profile-level-label').textContent = isFr ? 'Niveau:' : 'Level:';
+    document.getElementById('profile-test-label').textContent = isFr ? 'Test:' : 'Test:';
+    document.getElementById('profile-test-btn').textContent = isFr ? '📋 Passer le Test' : '📋 Take Test';
+    document.getElementById('profile-reset-btn').textContent = isFr ? '🔄 Réinitialiser' : '🔄 Reset';
+    const testFeito = isFr ? user.testeFeitoFr : user.testeFeitoEn;
+    const nivel = isFr ? user.nivelFr : user.nivelEn;
+    document.getElementById('profile-level').textContent = nivel || '-';
+    document.getElementById('profile-test').textContent = testFeito ? (isFr ? 'Terminé' : 'Done') : (isFr ? 'Non fait' : 'Not done');
+    document.getElementById('avatar-selector-title').textContent = isFr ? 'Choisissez Avatar' : 'Choose Avatar';
+    document.getElementById('avatar-selector-cancel').textContent = isFr ? 'Annuler' : 'Cancel';
     if (document.getElementById('test').style.display !== 'none') {
         loadPerguntaTeste();
     }
 }
 
 // ===== PERFIL =====
-function editarAvatar() {
-    const escolha = prompt('Escolha (0-' + (avatares.length-1) + '):\n' + avatares.map((a,i) => i + ' ' + a).join('\n'));
-    const idx = parseInt(escolha);
-    if (idx >= 0 && idx < avatares.length) {
-        user.avatar = avatares[idx];
-        saveUser();
-        document.getElementById('avatar-display').textContent = user.avatar;
-    }
+function mostrarAvatarSelector() {
+    const grid = document.getElementById('avatar-grid');
+    grid.innerHTML = '';
+    avatares.forEach((avatar, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = avatar;
+        btn.style.cssText = 'font-size:2rem; background:var(--bg); border:2px solid var(--border); border-radius:8px; padding:8px; cursor:pointer;';
+        btn.onclick = () => { selecionarAvatar(idx); };
+        grid.appendChild(btn);
+    });
+    document.getElementById('avatar-selector').style.display = 'flex';
+}
+
+function selecionarAvatar(idx) {
+    user.avatar = avatares[idx];
+    saveUser();
+    document.getElementById('avatar-display').textContent = user.avatar;
+    fecharAvatarSelector();
+}
+
+function fecharAvatarSelector() {
+    document.getElementById('avatar-selector').style.display = 'none';
 }
 
 function salvarNome() {
-    user.nome = document.getElementById('nome-input').value.trim();
+    const nome = document.getElementById('nome-input').value.trim().toLowerCase();
+    user.nome = nome;
     saveUser();
+    
+    // easter eggs
+    if (nome === 'victor frois') {
+        user.avatar = '😈';
+        saveUser();
+        document.getElementById('avatar-display').textContent = user.avatar;
+        document.getElementById('result').innerHTML = '<div style="background:var(--success-bg); color:var(--success); padding:12px; border-radius:10px; text-align:center;">😈 emo mode activated</div>';
+    }
+    else if (nome === 'stezinha gameplays') {
+        user.avatar = '💗';
+        saveUser();
+        document.getElementById('avatar-display').textContent = user.avatar;
+        som('acerto');
+        setTimeout(() => {
+            alert('vc é linda 💗');
+        }, 300);
+    }
 }
 
 function resetar() {
     if (confirm('Tem certeza? Tudo será perdido.')) {
-        user = { nome: '', avatar: '😀', xp: 0, streak: 0, hearts: 5, nivel: '-', testFeito: false, testeEtapa: 0, testeAcertos: 0, testeIndex: 0 };
+        user = { 
+            nome: '', avatar: '😀', xp: 0, streak: 0, hearts: 5,
+            nivelEn: '-', nivelFr: '-',
+            testeFeitoEn: false, testeFeitoFr: false,
+            testeEtapaEn: 0, testeEtapaFr: 0,
+            testeAcertosEn: 0, testeAcertosFr: 0,
+            testeIndexEn: 0, testeIndexFr: 0
+        };
         saveUser();
         location.reload();
     }
@@ -316,26 +482,30 @@ function resetar() {
 
 // ===== PERGUNTAS =====
 function loadQuestion() {
-    if (!user.testFeito) {
+    const testFeito = currentLang === 'fr' ? user.testeFeitoFr : user.testeFeitoEn;
+    if (!testFeito) {
         document.getElementById('question').innerHTML = '<strong>⚠️ Faça o teste primeiro!</strong>';
         document.getElementById('question').innerHTML += '<button class="btn" onclick="mostrar(\'test\')">📋 Fazer Teste</button>';
         document.getElementById('options').style.display = 'none';
         return;
     }
     const nivelKeys = ['basico', 'intermediario', 'avancado'];
-    const nivelIndex = user.testeEtapa || 0;
+    const testeEtapa = currentLang === 'fr' ? user.testeEtapaFr : user.testeEtapaEn;
+    const nivelIndex = testeEtapa || 0;
     const nivel = nivelKeys[nivelIndex] || 'basico';
+    const nivelLabel = currentLang === 'fr' ? user.nivelFr : user.nivelEn;
     const lista = currentLang === 'fr' ? perguntasFR[nivel] : perguntas[nivel];
     const randomQ = Math.floor(Math.random() * lista.length);
     const p = lista[randomQ];
     const opts = [...p.o].sort(() => Math.random() - 0.5);
-    currentQ = { resposta: p.a, nivel: nivel };
-    document.getElementById('question').innerHTML = `<p>${p.q}</p><small style="color:var(--primary)">${nivelMap[nivel]}</small>`;
+    currentQ = { resposta: p.a, nivel: nivel, lang: currentLang };
+    document.getElementById('question').innerHTML = `<p>${p.q}</p><small style="color:var(--primary)">${nivelLabel}</small>`;
     document.getElementById('options').style.display = 'grid';
     const btns = document.querySelectorAll('#options button');
     btns.forEach((btn, i) => {
         btn.textContent = opts[i];
         btn.classList.remove('correct', 'wrong');
+        btn.classList.add('option');
         btn.disabled = false;
     });
     document.getElementById('result').textContent = '';
@@ -373,9 +543,15 @@ function responder(btn) {
 
 // ===== TESTE =====
 function iniciarTeste() {
-    user.testeEtapa = 0;
-    user.testeAcertos = 0;
-    user.testeIndex = 0;
+    if (currentLang === 'fr') {
+        user.testeEtapaFr = 0;
+        user.testeAcertosFr = 0;
+        user.testeIndexFr = 0;
+    } else {
+        user.testeEtapaEn = 0;
+        user.testeAcertosEn = 0;
+        user.testeIndexEn = 0;
+    }
     document.getElementById('test').style.display = 'block';
     document.getElementById('home').style.display = 'none';
     document.getElementById('profile').style.display = 'none';
@@ -386,42 +562,60 @@ function iniciarTeste() {
 }
 
 function loadPerguntaTeste() {
-    const etapa = etapas[user.testeEtapa];
-    const lista = currentLang === 'fr' ? perguntasFR[etapa] : perguntas[etapa];
-    if (user.testeIndex >= lista.length) {
-        if (user.testeAcertos >= 7) {
-            if (user.testeEtapa < 2) {
-                const nextEtapa = etapas[user.testeEtapa + 1];
+    const isFr = currentLang === 'fr';
+    const testeEtapa = isFr ? user.testeEtapaFr : user.testeEtapaEn;
+    const testeIndex = isFr ? user.testeIndexFr : user.testeIndexEn;
+    const testeAcertos = isFr ? user.testeAcertosFr : user.testeAcertosEn;
+    
+    const etapa = etapas[testeEtapa];
+    const lista = isFr ? perguntasFR[etapa] : perguntas[etapa];
+    if (testeIndex >= lista.length) {
+        if (testeAcertos >= 7) {
+            if (testeEtapa < 2) {
+                const nextEtapa = etapas[testeEtapa + 1];
                 document.getElementById('test-question').innerHTML = `<h3>🎉 Passou de Fase!</h3><p>Próxima: ${nextEtapa}</p>`;
                 document.getElementById('test-options').style.display = 'none';
                 document.getElementById('next-test-btn').style.display = 'block';
             } else {
-                user.testFeito = true;
-                user.nivel = 'Fluente';
-                user.testeEtapa = 3;
+                if (isFr) {
+                    user.testeFeitoFr = true;
+                    user.nivelFr = 'Fluente';
+                    user.testeEtapaFr = 3;
+                } else {
+                    user.testeFeitoEn = true;
+                    user.nivelEn = 'Fluente';
+                    user.testeEtapaEn = 3;
+                }
                 saveUser();
                 document.getElementById('test-question').innerHTML = '<h3>🏆 Teste Concluído!</h3><p>Nível: Fluente</p>';
                 setTimeout(() => { location.reload(); }, 2000);
             }
         } else {
-            user.testFeito = true;
-            user.nivel = nivelMap[etapa] || 'Básico';
+            const nivelFinal = nivelMap[etapa] || 'Básico';
+            if (isFr) {
+                user.testeFeitoFr = true;
+                user.nivelFr = nivelFinal;
+            } else {
+                user.testeFeitoEn = true;
+                user.nivelEn = nivelFinal;
+            }
             saveUser();
-            document.getElementById('test-question').innerHTML = `<h3>🏆 Teste Concluído!</h3><p>Seu nível: <strong>${user.nivel}</strong></p>`;
+            document.getElementById('test-question').innerHTML = `<h3>🏆 Teste Concluído!</h3><p>Seu nível: <strong>${nivelFinal}</strong></p>`;
             setTimeout(() => { location.reload(); }, 2500);
         }
         return;
     }
-    const p = lista[user.testeIndex];
+    const p = lista[testeIndex];
     const opts = [...p.o].sort(() => Math.random() - 0.5);
-    currentQ = { resposta: p.a };
-    document.getElementById('test-progress').style.width = (user.testeIndex / lista.length * 100) + '%';
-    document.getElementById('test-question').innerHTML = `<p>${p.q}</p><small>${etapa} • ${user.testeIndex + 1}/${lista.length}</small>`;
+    currentQ = { resposta: p.a, lang: currentLang };
+    document.getElementById('test-progress').style.width = (testeIndex / lista.length * 100) + '%';
+    document.getElementById('test-question').innerHTML = `<p>${p.q}</p><small>${etapa} • ${testeIndex + 1}/${lista.length}</small>`;
     document.getElementById('test-options').style.display = 'grid';
     const btns = document.querySelectorAll('#test-options button');
     btns.forEach((btn, i) => {
         btn.textContent = opts[i];
         btn.classList.remove('correct', 'wrong');
+        btn.classList.add('option');
         btn.disabled = false;
     });
     document.getElementById('test-result').textContent = '';
@@ -432,9 +626,10 @@ function responderTeste(btn) {
     if (!currentQ) return;
     const btns = document.querySelectorAll('#test-options button');
     btns.forEach(b => b.disabled = true);
+    const isFr = currentLang === 'fr';
     if (btn.textContent === currentQ.resposta) {
         btn.classList.add('correct');
-        user.testeAcertos++;
+        if (isFr) user.testeAcertosFr++; else user.testeAcertosEn++;
         som('acerto');
         document.getElementById('test-result').innerHTML = '✅ Correto!';
     } else {
@@ -443,17 +638,24 @@ function responderTeste(btn) {
         btns.forEach(b => { if (b.textContent === currentQ.resposta) b.classList.add('correct'); });
         document.getElementById('test-result').innerHTML = '❌ ' + currentQ.resposta;
     }
-    user.testeIndex++;
+    if (isFr) user.testeIndexFr++; else user.testeIndexEn++;
+    saveUser();
     setTimeout(loadPerguntaTeste, 1200);
 }
 
 function proximaEtapa() {
-    user.testeEtapa++;
-    user.testeIndex = 0;
-    user.testeAcertos = 0;
-    const nivelKeys = ['basico', 'intermediario', 'avancado'];
-    if (user.testeEtapa < 3) user.nivel = nivelMap[nivelKeys[user.testeEtapa]];
+    const isFr = currentLang === 'fr';
+    if (isFr) {
+        user.testeEtapaFr++;
+        user.testeIndexFr = 0;
+        user.testeAcertosFr = 0;
+    } else {
+        user.testeEtapaEn++;
+        user.testeIndexEn = 0;
+        user.testeAcertosEn = 0;
+    }
     document.getElementById('next-test-btn').style.display = 'none';
+    saveUser();
     loadPerguntaTeste();
 }
 

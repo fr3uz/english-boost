@@ -1,0 +1,13 @@
+{
+  "name": "faiz-nois-fala-ingles-pur-favor",
+  "version": "1.0.0",
+  "description": "Aprenda inglês e francês com teste de nivelamento",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.0"
+  }
+}
