@@ -451,7 +451,7 @@ function salvarNome() {
     if (nome === 'victor frois') {
         user.avatar = '😤';
         saveUser();
-        document.getElementById('avatar-display').textContent = user.avatar;
+        document.getElementById('avatar-display').innerHTML = '<img src="https://www.emojirequest.com/img-facebook/EmoEmoji.jpg" style="width:48px;height:48px;border-radius:8px;object-fit:cover;">';
         som('acerto');
         setTimeout(() => { alert('god mode 😤'); }, 300);
     }
@@ -462,7 +462,7 @@ function salvarNome() {
         som('acerto');
         setTimeout(() => { alert('vc é linda 💗'); }, 300);
     }
-    else if (nome === 'elias lima') {
+    else if (nome === 'elias maluco') {
         user.avatar = '🤪';
         saveUser();
         document.getElementById('avatar-display').textContent = user.avatar;
