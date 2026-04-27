@@ -469,7 +469,7 @@ function salvarNome() {
         som('acerto');
         setTimeout(() => { alert('how to speak elias maluco in english? 🤪'); }, 300);
     }
-    else if (nome === 'rodrygo') {
+    else if (nome === 'haruspex') {
         user.avatar = '🏳️‍🌈';
         saveUser();
         document.getElementById('avatar-display').textContent = user.avatar;
