@@ -1,3 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 50">
-  <text x="175" y="35" text-anchor="middle" font-family="Inter, Georgia, serif" font-size="22" font-weight="700" fill="#ffffff">faiz nois fala ingreis pur favor</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 50">
+  <rect width="50" height="50" rx="8" fill="#0f0f0f"/>
+  <circle cx="25" cy="25" r="20" fill="#1a1a1a" stroke="#00d4aa" stroke-width="2"/>
+  <text x="25" y="30" text-anchor="middle" font-family="Inter, serif" font-size="28" font-weight="700" fill="#00d4aa">F</text>
+  <text x="75" y="22" font-family="Inter, Georgia, serif" font-size="10" fill="#888">faiz</text>
+  <text x="75" y="34" font-family="Inter, Georgia, serif" font-size="10" fill="#888">nois</text>
+  <text x="108" y="22" font-family="Inter, Georgia, serif" font-size="10" fill="#888">fala</text>
+  <text x="108" y="34" font-family="Inter, Georgia, serif" font-size="10" fill="#888">ingreis</text>
+  <text x="145" y="22" font-family="Inter, Georgia, serif" font-size="10" fill="#888">pur</text>
+  <text x="145" y="34" font-family="Inter, Georgia, serif" font-size="10" fill="#888">favor</text>
 </svg>
